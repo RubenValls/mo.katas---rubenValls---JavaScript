@@ -48,4 +48,47 @@ describe('Rover', () => {
     })
   });
 
+  describe('facing east', () => {
+    it('moves forwards', () => {
+      let rover = new Rover(0, 0, 'E')
+
+      rover.move(['f'])
+
+      expect(rover.x).toEqual(1)
+      expect(rover.y).toEqual(0)
+      expect(rover.orientation).toEqual('E')
+    })
+
+    it('moves backwards', () => {
+      let rover = new Rover(0, 0, 'E')
+
+      rover.move(['b'])
+
+      expect(rover.x).toEqual(-1)
+      expect(rover.y).toEqual(0)
+      expect(rover.orientation).toEqual('E')
+    })
+  })
+
+  describe('facing west', () => {
+    it('moves forwards', () => {
+      let rover = new Rover(0, 0, 'W')
+
+      rover.move(['f'])
+
+      expect(rover.x).toEqual(-1)
+      expect(rover.y).toEqual(0)
+      expect(rover.orientation).toEqual('W')
+    })
+
+    it('moves backwards', () => {
+      let rover = new Rover(0, 0, 'W')
+
+      rover.move(['b'])
+
+      expect(rover.x).toEqual(1)
+      expect(rover.y).toEqual(0)
+      expect(rover.orientation).toEqual('W')
+    })
+  })
 })
