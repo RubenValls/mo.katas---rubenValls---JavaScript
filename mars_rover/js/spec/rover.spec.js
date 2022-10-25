@@ -80,12 +80,12 @@ describe('Rover', () => {
 
   describe('facing south', () => {
     it('moves forwards', () => {
-      let rover = new Rover(0, 0, 'S')
+      let rover = new Rover(0, 1, 'S')
 
       rover.move(['f'])
 
       expect(rover.x).toEqual(0)
-      expect(rover.y).toEqual(-1)
+      expect(rover.y).toEqual(0)
       expect(rover.orientation).toEqual('S')
     })
 
@@ -117,6 +117,16 @@ describe('Rover', () => {
       expect(rover.x).toEqual(0)
       expect(rover.y).toEqual(0)
       expect(rover.orientation).toEqual('W')
+    })
+
+    it('wrapping edge', () =>{
+      let rover = new Rover(1, 0, 'S')
+
+      rover.move(['f'])
+
+      expect(rover.x).toEqual(1)
+      expect(rover.y).toEqual(2)
+      expect(rover.orientation).toEqual('S')
     })
   });
 
@@ -160,15 +170,25 @@ describe('Rover', () => {
       expect(rover.y).toEqual(0)
       expect(rover.orientation).toEqual('S')
     })
+
+    it('wrapping edge', () =>{
+      let rover = new Rover(2, 1, 'E')
+
+      rover.move(['f'])
+
+      expect(rover.x).toEqual(0)
+      expect(rover.y).toEqual(1)
+      expect(rover.orientation).toEqual('E')
+    })
   })
 
   describe('facing west', () => {
     it('moves forwards', () => {
-      let rover = new Rover(0, 0, 'W')
+      let rover = new Rover(1, 0, 'W')
 
       rover.move(['f'])
 
-      expect(rover.x).toEqual(-1)
+      expect(rover.x).toEqual(0)
       expect(rover.y).toEqual(0)
       expect(rover.orientation).toEqual('W')
     })
@@ -201,6 +221,16 @@ describe('Rover', () => {
       expect(rover.x).toEqual(0)
       expect(rover.y).toEqual(0)
       expect(rover.orientation).toEqual('N')
+    })
+
+    it('wrapping edge', () =>{
+      let rover = new Rover(0, 2, 'W')
+
+      rover.move(['f'])
+
+      expect(rover.x).toEqual(2)
+      expect(rover.y).toEqual(2)
+      expect(rover.orientation).toEqual('W')
     })
   })
 })
