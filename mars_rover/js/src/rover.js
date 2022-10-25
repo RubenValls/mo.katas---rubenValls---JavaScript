@@ -59,11 +59,26 @@ class Rover {
             this.setY(this.y - 1)
           }
         }else if(this.orientation === "S"){
-          this.y = this.y + 1
+          let newPositions = checkBorderBackward(this.x,this.y,this.orientation)
+          if (newPositions[1] != this.y){
+            this.setY(newPositions[1])
+          }else{
+            this.setY(this.y + 1)
+          }
         }else if(this.orientation === "E"){
-          this.x = this.x - 1
+          let newPositions = checkBorderBackward(this.x,this.y,this.orientation)
+          if (newPositions[0] != this.x){
+            this.setX(newPositions[0])
+          }else{
+            this.setX(this.x - 1)
+          }
         }else if(this.orientation === "W"){
-          this.x = this.x + 1
+          let newPositions = checkBorderBackward(this.x,this.y,this.orientation)
+          if (newPositions[0] != this.x){
+            this.setX(newPositions[0])
+          }else{
+            this.setX(this.x + 1)
+          }
         }
       }
       if (m === "l") {
