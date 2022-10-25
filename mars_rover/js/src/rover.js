@@ -19,23 +19,22 @@ class Rover {
 
   move(movs) {
     movs.forEach(m => {
+      let newPositions
       if(m === "f"){
+        newPositions = checkBorderForward(this.x,this.y,this.orientation)
         if(this.orientation === "N"){
-          let newPositions = checkBorderForward(this.x,this.y,this.orientation)
           if (newPositions[1] != this.y){
             this.setY(newPositions[1])
           }else{
             this.setY(this.y + 1)
           }
         }else if(this.orientation === "S"){
-          let newPositions = checkBorderForward(this.x,this.y,this.orientation)
           if (newPositions[1] != this.y){
             this.setY(newPositions[1])
           }else{
             this.setY(this.y - 1)
           }
         }else if(this.orientation === "E"){
-          let newPositions = checkBorderForward(this.x,this.y,this.orientation)
           if (newPositions[0] != this.x){
             this.setX(newPositions[0])
           }else{
@@ -51,29 +50,26 @@ class Rover {
         }
       }
       if (m === "b") {
+        newPositions = checkBorderBackward(this.x,this.y,this.orientation)
         if(this.orientation === "N"){
-          let newPositions = checkBorderBackward(this.x,this.y,this.orientation)
           if (newPositions[1] != this.y){
             this.setY(newPositions[1])
           }else{
             this.setY(this.y - 1)
           }
         }else if(this.orientation === "S"){
-          let newPositions = checkBorderBackward(this.x,this.y,this.orientation)
           if (newPositions[1] != this.y){
             this.setY(newPositions[1])
           }else{
             this.setY(this.y + 1)
           }
         }else if(this.orientation === "E"){
-          let newPositions = checkBorderBackward(this.x,this.y,this.orientation)
           if (newPositions[0] != this.x){
             this.setX(newPositions[0])
           }else{
             this.setX(this.x - 1)
           }
         }else if(this.orientation === "W"){
-          let newPositions = checkBorderBackward(this.x,this.y,this.orientation)
           if (newPositions[0] != this.x){
             this.setX(newPositions[0])
           }else{
