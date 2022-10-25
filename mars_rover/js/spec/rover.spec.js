@@ -38,12 +38,12 @@ describe('Rover', () => {
     })
 
     it('moves backwards', () => {
-      let rover = new Rover(0, 0, 'N')
+      let rover = new Rover(0, 1, 'N')
 
       rover.move(['b'])
 
       expect(rover.x).toEqual(0)
-      expect(rover.y).toEqual(-1)
+      expect(rover.y).toEqual(0)
       expect(rover.orientation).toEqual('N')
     })
 
@@ -67,13 +67,23 @@ describe('Rover', () => {
       expect(rover.orientation).toEqual('E')
     })
 
-    it('wrapping edge', () =>{
+    it('wrapping edge forward', () =>{
       let rover = new Rover(0, 2, 'N')
 
       rover.move(['f'])
 
       expect(rover.x).toEqual(0)
       expect(rover.y).toEqual(0)
+      expect(rover.orientation).toEqual('N')
+    })
+
+    it('wrapping edge backward', () =>{
+      let rover = new Rover(0, 0, 'N')
+
+      rover.move(['b'])
+
+      expect(rover.x).toEqual(0)
+      expect(rover.y).toEqual(2)
       expect(rover.orientation).toEqual('N')
     })
   });
