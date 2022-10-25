@@ -18,6 +18,10 @@ class Rover {
   }
 
   move(movs) {
+    const min = 0
+    const max = 3
+    const firstObstacle = [getRandomArbitrary(min, max), getRandomArbitrary(min, max)]
+    const secondObstacle = [getRandomArbitrary(min, max), getRandomArbitrary(min, max)]
     movs.forEach(m => {
       let newPositions
       if(m === "f"){
@@ -139,6 +143,10 @@ class Rover {
         orientation = "N"
       }
       return orientation
+    }
+
+    function getRandomArbitrary(min, max) {
+      return Math.random() * (max - min) + min;
     }
   }
 }
