@@ -46,6 +46,16 @@ describe('Rover', () => {
       expect(rover.y).toEqual(-1)
       expect(rover.orientation).toEqual('N')
     })
+
+    it('turns left', () =>{
+      let rover = new Rover(0, 0, 'N')
+
+      rover.move(['l'])
+
+      expect(rover.x).toEqual(0)
+      expect(rover.y).toEqual(0)
+      expect(rover.orientation).toEqual('W')
+    })
   });
 
   describe('facing south', () => {
