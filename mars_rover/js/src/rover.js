@@ -7,10 +7,27 @@ class Rover {
 
   move(movs) {
     movs.forEach(m => {
-      if (m === "f") {
-        this.y = this.y + 1
-      } else if (m === "b") {
-        this.y = this.y - 1
+      if(m === "f"){
+        if(this.orientation === "N"){
+          this.y = this.y + 1
+        }else if(this.orientation === "S"){
+          this.y = this.y - 1
+        }else if(this.orientation === "E"){
+          this.x = this.x + 1
+        }else if(this.orientation === "W"){
+          this.x = this.x - 1
+        }
+      }
+      if (m === "b") {
+        if(this.orientation === "N"){
+          this.y = this.y - 1
+        }else if(this.orientation === "S"){
+          this.y = this.y + 1
+        }else if(this.orientation === "E"){
+          this.x = this.x - 1
+        }else if(this.orientation === "W"){
+          this.x = this.x + 1
+        }
       }
     })
   }
