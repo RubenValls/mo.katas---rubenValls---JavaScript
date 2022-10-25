@@ -48,9 +48,9 @@ class Rover {
         orientation = "W"
       } else if(orientation === "W"){
         orientation = "S"
-      } else if (orientation = "S"){
+      } else if (orientation === "S"){
         orientation = "E"
-      } else{
+      } else if(orientation === "E"){
         orientation = "N"
       }
       return orientation
@@ -61,9 +61,9 @@ class Rover {
         orientation = "E"
       } else if(orientation === "E"){
         orientation = "S"
-      } else if (orientation = "S"){
+      } else if (orientation === "S"){
         orientation = "W"
-      } else{
+      } else if (orientation === "W"){
         orientation = "N"
       }
       return orientation
