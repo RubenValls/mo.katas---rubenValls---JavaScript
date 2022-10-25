@@ -3,30 +3,10 @@ class Rover {
     this.x = x
     this.y = y
     this.orientation = orientation
+  }
 
-    function turnLeft(){
-      if(this.orientation === "N"){
-        this.orientation = "W"
-      } else if(this.orientation === "W"){
-        this.orientation = "S"
-      } else if (this.orientation = "S"){
-        this.orientation = "E"
-      } else{
-        this.orientation = "N"
-      }
-    }
-
-    function turnRight(){
-      if(this.orientation === "N"){
-        this.orientation = "E"
-      } else if(this.orientation === "E"){
-        this.orientation = "S"
-      } else if (this.orientation = "S"){
-        this.orientation = "W"
-      } else{
-        this.orientation = "N"
-      }
-    }
+  setOrientation(orientation){
+    this.orientation = orientation
   }
 
   move(movs) {
@@ -54,12 +34,40 @@ class Rover {
         }
       }
       if (m === "l") {
-        turnLeft()
+        let orientation = turnLeft(this.orientation)
+        this.setOrientation(orientation)
       }
       if (m === "r") {
-        turnRight()
+        let orientation = turnRight(this.orientation)
+        this.setOrientation(orientation)
       }
     })
+
+    function turnLeft(orientation){
+      if(orientation === "N"){
+        orientation = "W"
+      } else if(orientation === "W"){
+        orientation = "S"
+      } else if (orientation = "S"){
+        orientation = "E"
+      } else{
+        orientation = "N"
+      }
+      return orientation
+    }
+
+    function turnRight(orientation){
+      if(orientation === "N"){
+        orientation = "E"
+      } else if(orientation === "E"){
+        orientation = "S"
+      } else if (orientation = "S"){
+        orientation = "W"
+      } else{
+        orientation = "N"
+      }
+      return orientation
+    }
   }
 }
 
