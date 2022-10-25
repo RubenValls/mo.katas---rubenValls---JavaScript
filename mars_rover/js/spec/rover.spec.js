@@ -56,6 +56,16 @@ describe('Rover', () => {
       expect(rover.y).toEqual(0)
       expect(rover.orientation).toEqual('W')
     })
+
+    it('turns right', () =>{
+      let rover = new Rover(0, 0, 'N')
+
+      rover.move(['r'])
+
+      expect(rover.x).toEqual(0)
+      expect(rover.y).toEqual(0)
+      expect(rover.orientation).toEqual('E')
+    })
   });
 
   describe('facing south', () => {
@@ -77,6 +87,26 @@ describe('Rover', () => {
       expect(rover.x).toEqual(0)
       expect(rover.y).toEqual(1)
       expect(rover.orientation).toEqual('S')
+    })
+
+    it('turns left', () =>{
+      let rover = new Rover(0, 0, 'S')
+
+      rover.move(['l'])
+
+      expect(rover.x).toEqual(0)
+      expect(rover.y).toEqual(0)
+      expect(rover.orientation).toEqual('E')
+    })
+
+    it('turns right', () =>{
+      let rover = new Rover(0, 0, 'S')
+
+      rover.move(['r'])
+
+      expect(rover.x).toEqual(0)
+      expect(rover.y).toEqual(0)
+      expect(rover.orientation).toEqual('W')
     })
   });
 
@@ -100,6 +130,26 @@ describe('Rover', () => {
       expect(rover.y).toEqual(0)
       expect(rover.orientation).toEqual('E')
     })
+
+    it('turns left', () =>{
+      let rover = new Rover(0, 0, 'E')
+
+      rover.move(['l'])
+
+      expect(rover.x).toEqual(0)
+      expect(rover.y).toEqual(0)
+      expect(rover.orientation).toEqual('N')
+    })
+
+    it('turns right', () =>{
+      let rover = new Rover(0, 0, 'E')
+
+      rover.move(['r'])
+
+      expect(rover.x).toEqual(0)
+      expect(rover.y).toEqual(0)
+      expect(rover.orientation).toEqual('S')
+    })
   })
 
   describe('facing west', () => {
@@ -121,6 +171,26 @@ describe('Rover', () => {
       expect(rover.x).toEqual(1)
       expect(rover.y).toEqual(0)
       expect(rover.orientation).toEqual('W')
+    })
+
+    it('turns left', () =>{
+      let rover = new Rover(0, 0, 'W')
+
+      rover.move(['l'])
+
+      expect(rover.x).toEqual(0)
+      expect(rover.y).toEqual(0)
+      expect(rover.orientation).toEqual('S')
+    })
+
+    it('turns right', () =>{
+      let rover = new Rover(0, 0, 'W')
+
+      rover.move(['r'])
+
+      expect(rover.x).toEqual(0)
+      expect(rover.y).toEqual(0)
+      expect(rover.orientation).toEqual('N')
     })
   })
 })
