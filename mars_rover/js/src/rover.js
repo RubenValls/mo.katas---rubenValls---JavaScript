@@ -52,7 +52,12 @@ class Rover {
       }
       if (m === "b") {
         if(this.orientation === "N"){
-          this.y = this.y - 1
+          let newPositions = checkBorderBackward(this.x,this.y,this.orientation)
+          if (newPositions[1] != this.y){
+            this.setY(newPositions[1])
+          }else{
+            this.setY(this.y - 1)
+          }
         }else if(this.orientation === "S"){
           this.y = this.y + 1
         }else if(this.orientation === "E"){
@@ -80,6 +85,20 @@ class Rover {
       } else if (x == 2 && orientation === "E"){
         position[0] = 0
       } else if (y == 0 && orientation === "S"){
+        position[1] = 2
+      }
+      return position
+    }
+
+    function checkBorderBackward(x,y,orientation){
+      let position = [x,y,orientation]
+      if (x == 0 && orientation === "E"){
+        position[0] = 2
+      } else if (y == 2 && orientation === "S"){
+        position[1] = 0
+      } else if (x == 2 && orientation === "W"){
+        position[0] = 0
+      } else if (y == 0 && orientation === "N"){
         position[1] = 2
       }
       return position
