@@ -5,6 +5,14 @@ class Rover {
     this.orientation = orientation
   }
 
+  setX(x){
+    this.x = x;
+  }
+
+  setY(y){
+    this.y = y;
+  }
+
   setOrientation(orientation){
     this.orientation = orientation
   }
@@ -13,7 +21,12 @@ class Rover {
     movs.forEach(m => {
       if(m === "f"){
         if(this.orientation === "N"){
-          this.y = this.y + 1
+          let newPositions = checkBorderForward(this.x,this.y,this.orientation)
+          if (newPositions[1] !== this.y){
+            this.setY(newPositions[1])
+          }else{
+            this.setY(this.y + 1)
+          }
         }else if(this.orientation === "S"){
           this.y = this.y - 1
         }else if(this.orientation === "E"){
@@ -42,6 +55,20 @@ class Rover {
         this.setOrientation(orientation)
       }
     })
+
+    function checkBorderForward(x,y,orientation){
+      let position = [x,y,orientation]
+      if (x == 0 && orientation === "W"){
+        position[0] = 2
+      } else if (y == 2 && orientation === "N"){
+        position[1] = 0
+      } else if (x == 2 && orientation === "E"){
+        position[0] = 0
+      } else if (y == 0 && orientation === "S"){
+        position[1] = 2
+      }
+      return position
+    }
 
     function turnLeft(orientation){
       if(orientation === "N"){
