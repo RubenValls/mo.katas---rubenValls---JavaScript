@@ -17,6 +17,18 @@ class Rover {
     this.orientation = orientation
   }
 
+  getX(){
+    return this.x
+  }
+
+  getY(){
+    return this.y
+  }
+
+  getOrientacion(){
+    return this.orientation
+  }
+
   move(movs) {
     const min = 0
     const max = 3
@@ -26,7 +38,12 @@ class Rover {
       let newPositions
       if(m === "f"){
         newPositions = checkBorderForward(this.x,this.y,this.orientation)
-        if(this.orientation === "N"){
+        let obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
+        if (obstacleDetection){
+          this.setX(0)
+          this.setY(0)
+          this.setOrientation("N")
+        }else if(this.orientation === "N"){
           if (newPositions[1] != this.y){
             this.setY(newPositions[1])
           }else{
@@ -117,6 +134,14 @@ class Rover {
         position[1] = 2
       }
       return position
+    }
+
+    function checkObstacles(obstacle1, obstacle2, position){
+      if(obstacle1[0] == position[0] && obstacle1[1] == position[1] || obstacle2[0] == position[0] && obstacle2[1] == position[1]){
+        return true;
+      }else{
+        return false
+      }
     }
 
     function turnLeft(orientation){
