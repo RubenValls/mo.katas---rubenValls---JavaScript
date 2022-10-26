@@ -5,43 +5,6 @@ class Rover {
     this.orientation = orientation
   }
 
-  setX(x){
-    this.x = x;
-  }
-
-  setY(y){
-    this.y = y;
-  }
-
-  setOrientation(orientation){
-    this.orientation = orientation
-  }
-
-  setCompletePosition(x,y,orientation){
-    this.x = x
-    this.y = y
-    this.orientation = orientation
-  }
-
-  //Find an obstacle and set the original location and return obstacle's position
-  obstacleFinded(initialLocation, newPositions){
-    this.setCompletePosition(initialLocation[0], initialLocation[1], initialLocation[2])
-    let obstaclePosition = newPositions
-    return obstaclePosition 
-  }
-
-  getX(){
-    return this.x
-  }
-
-  getY(){
-    return this.y
-  }
-
-  getOrientation(){
-    return this.orientation
-  }
-
   move(movs) {
 
     const initialLocation = [this.getX(), this.getY(), this.getOrientation()]
@@ -215,13 +178,11 @@ class Rover {
       }
       //Turn left
       if (m === "l") {
-        newOrientation = turnLeft(this.orientation)
-        this.setOrientation(newOrientation)
+        this.turnLeft()
       }
       //Turn right
       if (m === "r") {
-        newOrientation = turnRight(this.orientation)
-        this.setOrientation(newOrientation)
+        this.turnRight()
       }
     })
 
@@ -263,31 +224,66 @@ class Rover {
         return false
       }
     }
+  }
 
-    function turnLeft(orientation){
-      if(orientation === "N"){
-        orientation = "W"
-      } else if(orientation === "W"){
-        orientation = "S"
-      } else if (orientation === "S"){
-        orientation = "E"
-      } else if(orientation === "E"){
-        orientation = "N"
-      }
-      return orientation
+  setX(x){
+    this.x = x;
+  }
+
+  setY(y){
+    this.y = y;
+  }
+
+  setOrientation(orientation){
+    this.orientation = orientation
+  }
+
+  setCompletePosition(x,y,orientation){
+    this.x = x
+    this.y = y
+    this.orientation = orientation
+  }
+
+  //Find an obstacle and set the original location and return obstacle's position
+  obstacleFinded(initialLocation, newPositions){
+    this.setCompletePosition(initialLocation[0], initialLocation[1], initialLocation[2])
+    let obstaclePosition = newPositions
+    return obstaclePosition 
+  }
+
+  getX(){
+    return this.x
+  }
+
+  getY(){
+    return this.y
+  }
+
+  getOrientation(){
+    return this.orientation
+  }
+
+  turnRight(){
+    if(this.orientation === "N"){
+      this.orientation = "E"
+    } else if(this.orientation === "E"){
+      this.orientation = "S"
+    } else if (this.orientation === "S"){
+      this.orientation = "W"
+    } else if (this.orientation === "W"){
+      this.orientation = "N"
     }
+  }
 
-    function turnRight(orientation){
-      if(orientation === "N"){
-        orientation = "E"
-      } else if(orientation === "E"){
-        orientation = "S"
-      } else if (orientation === "S"){
-        orientation = "W"
-      } else if (orientation === "W"){
-        orientation = "N"
-      }
-      return orientation
+  turnLeft(){
+    if(this.orientation === "N"){
+      this.orientation = "W"
+    } else if(this.orientation === "W"){
+      this.orientation = "S"
+    } else if (this.orientation === "S"){
+      this.orientation = "E"
+    } else if(this.orientation === "E"){
+      this.orientation = "N"
     }
   }
 }
