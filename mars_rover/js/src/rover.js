@@ -42,72 +42,93 @@ class Rover {
   }
 
   move(movs) {
+
     const initialLocation = [this.getX(), this.getY(), this.getOrientation()]
     const firstObstacle = [1, 1]
     const secondObstacle = [2, 2]
     let obstacleFinded
     let newPositions
     let obstacleDetection
+    let newOrientation
     let newX
     let newY
+
     movs.forEach(m => {
       if(m === "f"){
         newPositions = checkBorderForward(this.x,this.y,this.orientation)
         obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
-        if (obstacleDetection == true){
+        if (obstacleDetection){
           this.setCompletePosition(initialLocation[0], initialLocation[1], initialLocation[2])
-        }else if(this.orientation === "N"){
-          if (newPositions[1] != this.y){
-            this.setY(newPositions[1])
-          }else{
-            newY = this.y + 1
-            newPositions = [this.getX(), newY, this.getOrientation()]
-            obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
-            if(obstacleDetection == true){
-              obstacleFinded = this.obstacleFinded(initialLocation, newPositions)            
-            }else{
-              this.setY(this.y + 1)
-            }
-          }
-        }else if(this.orientation === "S"){
-          if (newPositions[1] != this.y){
-            this.setY(newPositions[1])
-          }else{
-            newY = this.y - 1
-            newPositions = [this.getX(), newY, this.getOrientation()]
-            obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
-            if(obstacleDetection == true){
-              obstacleFinded = this.obstacleFinded(initialLocation, newPositions)             
-            }else{
-              this.setY(this.y - 1)
-            }
-          }
-        }else if(this.orientation === "E"){
-          if (newPositions[0] != this.x){
-            this.setX(newPositions[0])
-          }else{
-            newX = this.x + 1
-            newPositions = [newX, this.getY(), this.getOrientation()]
-            obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
-            if(obstacleDetection == true){
-              obstacleFinded = this.obstacleFinded(initialLocation, newPositions)            
-            }else{
-              this.setX(this.x + 1)
-            }
-          } 
-        }else if(this.orientation === "W"){
-          if (newPositions[0] != this.x){
-            this.setX(newPositions[0])
-          }else{
-            newX = this.x - 1
-            newPositions = [newX, this.getY(), this.getOrientation()]
-            obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
-            if(obstacleDetection == true){
-              obstacleFinded = this.obstacleFinded(initialLocation, newPositions)             
-            }else{
-              this.setX(this.x - 1)
-            }
-          }
+        }else{
+          switch(this.orientation){
+            case "N":
+              if (newPositions[1] != this.y){
+                this.setY(newPositions[1])
+                break;
+              }else{
+                newY = this.y + 1
+                newPositions = [this.getX(), newY, this.getOrientation()]
+                obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
+                if(obstacleDetection){
+                  obstacleFinded = this.obstacleFinded(initialLocation, newPositions)
+                  break;            
+                }else{
+                  this.setY(newY)
+                  break;
+                }
+              }
+            
+            case "S":
+              if (newPositions[1] != this.y){
+                this.setY(newPositions[1])
+                break;
+              }else{
+                newY = this.y - 1
+                newPositions = [this.getX(), newY, this.getOrientation()]
+                obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
+                if(obstacleDetection){
+                  obstacleFinded = this.obstacleFinded(initialLocation, newPositions)
+                  break;             
+                }else{
+                  this.setY(newY)
+                  break;
+                }
+              }
+            
+            case "E":
+              if (newPositions[0] != this.x){
+                this.setX(newPositions[0])
+                break;
+              }else{
+                newX = this.x + 1
+                newPositions = [newX, this.getY(), this.getOrientation()]
+                obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
+                if(obstacleDetection){
+                  obstacleFinded = this.obstacleFinded(initialLocation, newPositions)
+                  break;            
+                }else{
+                  this.setX(newX)
+                  break;
+                }
+              }
+              
+            case "W":
+              if (newPositions[0] != this.x){
+                this.setX(newPositions[0])
+                break;
+              }else{
+                newX = this.x - 1
+                newPositions = [newX, this.getY(), this.getOrientation()]
+                obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
+                if(obstacleDetection){
+                  obstacleFinded = this.obstacleFinded(initialLocation, newPositions)
+                  break;             
+                }else{
+                  this.setX(newX)
+                  break;
+                }
+              }
+          }  
         }
       }
       if (m === "b") {
@@ -122,10 +143,10 @@ class Rover {
             newY = this.y - 1
             newPositions = [this.getX(), newY, this.getOrientation()]
             obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
-            if(obstacleDetection == true){
+            if(obstacleDetection){
               obstacleFinded = this.obstacleFinded(initialLocation, newPositions)            
             }else{
-              this.setY(this.y - 1)
+              this.setY(newY)
             }
           }
         }else if(this.orientation === "S"){
@@ -135,10 +156,10 @@ class Rover {
             newY = this.y + 1
             newPositions = [this.getX(), newY, this.getOrientation()]
             obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
-            if(obstacleDetection == true){
+            if(obstacleDetection){
               obstacleFinded = this.obstacleFinded(initialLocation, newPositions)             
             }else{
-              this.setY(this.y + 1)
+              this.setY(newY)
             }
           }
         }else if(this.orientation === "E"){
@@ -148,10 +169,10 @@ class Rover {
             newX = this.x - 1
             newPositions = [newX, this.getY(), this.getOrientation()]
             obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
-            if(obstacleDetection == true){
+            if(obstacleDetection){
               obstacleFinded = this.obstacleFinded(initialLocation, newPositions)              
             }else{
-              this.setX(this.x - 1)
+              this.setX(newX)
             }
           }
         }else if(this.orientation === "W"){
@@ -164,18 +185,18 @@ class Rover {
             if(obstacleDetection == true){
               obstacleFinded = this.obstacleFinded(initialLocation, newPositions)             
             }else{
-              this.setX(this.x + 1)
+              this.setX(newX)
             }
           }
         }
       }
       if (m === "l") {
-        let orientation = turnLeft(this.orientation)
-        this.setOrientation(orientation)
+        newOrientation = turnLeft(this.orientation)
+        this.setOrientation(newOrientation)
       }
       if (m === "r") {
-        let orientation = turnRight(this.orientation)
-        this.setOrientation(orientation)
+        newOrientation = turnRight(this.orientation)
+        this.setOrientation(newOrientation)
       }
     })
 
@@ -241,9 +262,6 @@ class Rover {
       return orientation
     }
 
-    function getRandomArbitrary(min, max) {
-      return Math.random() * (max - min) + min;
-    }
   }
 }
 
