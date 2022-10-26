@@ -23,6 +23,12 @@ class Rover {
     this.orientation = orientation
   }
 
+  obstacleFinded(initialLocation, newPositions){
+    this.setCompletePosition(initialLocation[0], initialLocation[1], initialLocation[2])
+    let obstaclePosition = newPositions
+    return obstaclePosition 
+  }
+
   getX(){
     return this.x
   }
@@ -37,8 +43,6 @@ class Rover {
 
   move(movs) {
     const initialLocation = [this.getX(), this.getY(), this.getOrientation()]
-    const min = 0
-    const max = 3
     const firstObstacle = [1, 1]
     const secondObstacle = [2, 2]
     let obstacleFinded
@@ -60,8 +64,7 @@ class Rover {
             newPositions = [this.getX(), newY, this.getOrientation()]
             obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
             if(obstacleDetection == true){
-              this.setCompletePosition(initialLocation[0], initialLocation[1], initialLocation[2])
-              obstacleFinded = newPositions              
+              obstacleFinded = this.obstacleFinded(initialLocation, newPositions)            
             }else{
               this.setY(this.y + 1)
             }
@@ -74,7 +77,7 @@ class Rover {
             newPositions = [this.getX(), newY, this.getOrientation()]
             obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
             if(obstacleDetection == true){
-              this.setCompletePosition(initialLocation[0], initialLocation[1], initialLocation[2])              
+              obstacleFinded = this.obstacleFinded(initialLocation, newPositions)             
             }else{
               this.setY(this.y - 1)
             }
@@ -87,7 +90,7 @@ class Rover {
             newPositions = [newX, this.getY(), this.getOrientation()]
             obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
             if(obstacleDetection == true){
-              this.setCompletePosition(initialLocation[0], initialLocation[1], initialLocation[2])             
+              obstacleFinded = this.obstacleFinded(initialLocation, newPositions)            
             }else{
               this.setX(this.x + 1)
             }
@@ -100,7 +103,7 @@ class Rover {
             newPositions = [newX, this.getY(), this.getOrientation()]
             obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
             if(obstacleDetection == true){
-              this.setCompletePosition(initialLocation[0], initialLocation[1], initialLocation[2])              
+              obstacleFinded = this.obstacleFinded(initialLocation, newPositions)             
             }else{
               this.setX(this.x - 1)
             }
@@ -120,18 +123,11 @@ class Rover {
             newPositions = [this.getX(), newY, this.getOrientation()]
             obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
             if(obstacleDetection == true){
-              this.setCompletePosition(initialLocation[0], initialLocation[1], initialLocation[2])             
+              obstacleFinded = this.obstacleFinded(initialLocation, newPositions)            
             }else{
               this.setY(this.y - 1)
             }
           }
-          /*
-          if (newPositions[1] != this.y){
-            this.setY(newPositions[1])
-          }else{
-            this.setY(this.y - 1)
-          }
-          */
         }else if(this.orientation === "S"){
           if (newPositions[1] != this.y){
             this.setY(newPositions[1])
@@ -140,13 +136,10 @@ class Rover {
             newPositions = [this.getX(), newY, this.getOrientation()]
             obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
             if(obstacleDetection == true){
-              this.setX(initialLocation[0])
-              this.setY(initialLocation[1])
-              this.setOrientation(initialLocation[2])              
+              obstacleFinded = this.obstacleFinded(initialLocation, newPositions)             
             }else{
               this.setY(this.y + 1)
             }
-            //this.setY(this.y + 1)
           }
         }else if(this.orientation === "E"){
           if (newPositions[0] != this.x){
@@ -156,13 +149,10 @@ class Rover {
             newPositions = [newX, this.getY(), this.getOrientation()]
             obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
             if(obstacleDetection == true){
-              this.setX(initialLocation[0])
-              this.setY(initialLocation[1])
-              this.setOrientation(initialLocation[2])              
+              obstacleFinded = this.obstacleFinded(initialLocation, newPositions)              
             }else{
               this.setX(this.x - 1)
             }
-            //this.setX(this.x - 1)
           }
         }else if(this.orientation === "W"){
           if (newPositions[0] != this.x){
@@ -172,13 +162,10 @@ class Rover {
             newPositions = [newX, this.getY(), this.getOrientation()]
             obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
             if(obstacleDetection == true){
-              this.setX(initialLocation[0])
-              this.setY(initialLocation[1])
-              this.setOrientation(initialLocation[2])              
+              obstacleFinded = this.obstacleFinded(initialLocation, newPositions)             
             }else{
               this.setX(this.x + 1)
             }
-            //this.setX(this.x + 1)
           }
         }
       }
