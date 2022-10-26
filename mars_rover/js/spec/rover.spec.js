@@ -258,7 +258,7 @@ describe('Rover', () => {
 
       rover.move(['f'])
 
-      expect(rover.x).toEqual(2)
+      expect(rover.x).toEqual(0)
       expect(rover.y).toEqual(2)
       expect(rover.orientation).toEqual('W')
     })
@@ -273,4 +273,27 @@ describe('Rover', () => {
       expect(rover.orientation).toEqual('W')
     })
   })
+
+  describe('facing obstacles', () => {
+    it('moves forwards to obstacle1', () => {
+      let rover = new Rover(0, 0, 'N')
+
+      rover.move(['f','r','f'])
+
+      expect(rover.x).toEqual(0)
+      expect(rover.y).toEqual(0)
+      expect(rover.orientation).toEqual('N')
+    })
+
+    it('moves forwards to obstacle2', () => {
+      let rover = new Rover(0, 2, 'E')
+
+      rover.move(['l','f','r', 'f', 'f', 'r', 'f'])
+
+      expect(rover.x).toEqual(0)
+      expect(rover.y).toEqual(2)
+      expect(rover.orientation).toEqual('E')
+    })
+  })
+
 })

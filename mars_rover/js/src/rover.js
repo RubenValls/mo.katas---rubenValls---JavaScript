@@ -25,50 +25,111 @@ class Rover {
     return this.y
   }
 
-  getOrientacion(){
+  getOrientation(){
     return this.orientation
   }
 
   move(movs) {
+    const initialLocation = [this.getX(), this.getY(), this.getOrientation()]
     const min = 0
     const max = 3
-    const firstObstacle = [getRandomArbitrary(min, max), getRandomArbitrary(min, max)]
-    const secondObstacle = [getRandomArbitrary(min, max), getRandomArbitrary(min, max)]
+    const firstObstacle = [1, 1]
+    const secondObstacle = [2, 2]
+    let newPositions
+    let obstacleDetection
+    let newX
+    let newY
     movs.forEach(m => {
-      let newPositions
       if(m === "f"){
         newPositions = checkBorderForward(this.x,this.y,this.orientation)
-        let obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
+        obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
         if (obstacleDetection){
-          this.setX(0)
-          this.setY(0)
-          this.setOrientation("N")
+          this.setX(initialLocation[0])
+          this.setY(initialLocation[1])
+          this.setOrientation(initialLocation[2])
         }else if(this.orientation === "N"){
           if (newPositions[1] != this.y){
             this.setY(newPositions[1])
           }else{
-            this.setY(this.y + 1)
+            newY = this.y + 1
+            newPositions = [this.getX(), newY, this.getOrientation()]
+            obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
+            if(obstacleDetection == true){
+              this.setX(initialLocation[0])
+              this.setY(initialLocation[1])
+              this.setOrientation(initialLocation[2])              
+            }else{
+              this.setY(this.y + 1)
+            }
           }
         }else if(this.orientation === "S"){
           if (newPositions[1] != this.y){
             this.setY(newPositions[1])
           }else{
+            newY = this.y - 1
+            newPositions = [this.getX(), newY, this.getOrientation()]
+            obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
+            if(obstacleDetection == true){
+              this.setX(initialLocation[0])
+              this.setY(initialLocation[1])
+              this.setOrientation(initialLocation[2])              
+            }else{
+              this.setY(this.y - 1)
+            }
+          }
+          /*
+          if (newPositions[1] != this.y){
+            this.setY(newPositions[1])
+          }else{
             this.setY(this.y - 1)
           }
+          */
         }else if(this.orientation === "E"){
+          if (newPositions[0] != this.x){
+            this.setX(newPositions[0])
+          }else{
+            newX = this.x + 1
+            newPositions = [newX, this.getY(), this.getOrientation()]
+            obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
+            if(obstacleDetection == true){
+              this.setX(initialLocation[0])
+              this.setY(initialLocation[1])
+              this.setOrientation(initialLocation[2])              
+            }else{
+              this.setX(this.x + 1)
+            }
+          } 
+          /*
           if (newPositions[0] != this.x){
             this.setX(newPositions[0])
           }else{
             this.setX(this.x + 1)
           }
+          */
         }else if(this.orientation === "W"){
-          let newPositions = checkBorderForward(this.x,this.y,this.orientation)
+          if (newPositions[0] != this.x){
+            this.setX(newPositions[0])
+          }else{
+            newX = this.x - 1
+            newPositions = [newX, this.getY(), this.getOrientation()]
+            obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
+            if(obstacleDetection == true){
+              this.setX(initialLocation[0])
+              this.setY(initialLocation[1])
+              this.setOrientation(initialLocation[2])              
+            }else{
+              this.setX(this.x - 1)
+            }
+          }
+        }
+          /*
           if (newPositions[0] != this.x){
             this.setX(newPositions[0])
           }else{
             this.setX(this.x - 1)
           }
         }
+        */
       }
       if (m === "b") {
         newPositions = checkBorderBackward(this.x,this.y,this.orientation)
