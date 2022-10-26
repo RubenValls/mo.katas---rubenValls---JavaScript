@@ -294,6 +294,36 @@ describe('Rover', () => {
       expect(rover.y).toEqual(2)
       expect(rover.orientation).toEqual('E')
     })
+
+    it('moves backwards to obstacle1', () => {
+      let rover = new Rover(0, 2, 'N')
+
+      rover.move(['b','l','b'])
+
+      expect(rover.x).toEqual(0)
+      expect(rover.y).toEqual(2)
+      expect(rover.orientation).toEqual('N')
+    })
+
+    it('moves backwards to obstacle2', () => {
+      let rover = new Rover(0, 0, 'N')
+
+      rover.move(['b','l','b', 'b'])
+
+      expect(rover.x).toEqual(0)
+      expect(rover.y).toEqual(0)
+      expect(rover.orientation).toEqual('N')
+    })
+
+    it('moves mixed to obstacle2', () => {
+      let rover = new Rover(0, 0, 'N')
+
+      rover.move(['f','f','l', 'b', 'b'])
+
+      expect(rover.x).toEqual(0)
+      expect(rover.y).toEqual(0)
+      expect(rover.orientation).toEqual('N')
+    })
   })
 
 })
