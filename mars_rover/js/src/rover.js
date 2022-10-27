@@ -19,7 +19,7 @@ class Rover {
     movs.forEach(m => {
       //Forward movement
       if(m === "f"){
-        newPositions = checkBorderForward(this.x,this.y,this.orientation)
+        newPositions = checkBorderForward(this.getX(),this.getY(),this.getOrientation())
         obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
         if (obstacleDetection){
           this.setCompletePosition(initialLocation[0], initialLocation[1], initialLocation[2])
@@ -27,11 +27,11 @@ class Rover {
           switch(this.orientation){
             //Forward north movement
             case "N":
-              if (newPositions[1] != this.y){
+              if (newPositions[1] != this.getY()){
                 this.setY(newPositions[1])
                 break;
               }else{
-                newY = this.y + 1
+                newY = this.getY() + 1
                 newPositions = [this.getX(), newY, this.getOrientation()]
                 obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
                 if(obstacleDetection){
@@ -44,11 +44,11 @@ class Rover {
               }
             //Forward south movement
             case "S":
-              if (newPositions[1] != this.y){
+              if (newPositions[1] != this.getY()){
                 this.setY(newPositions[1])
                 break;
               }else{
-                newY = this.y - 1
+                newY = this.getY() - 1
                 newPositions = [this.getX(), newY, this.getOrientation()]
                 obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
                 if(obstacleDetection){
@@ -61,7 +61,7 @@ class Rover {
               }
             //Forward east movement
             case "E":
-              if (newPositions[0] != this.x){
+              if (newPositions[0] != this.getX()){
                 this.setX(newPositions[0])
                 break;
               }else{
@@ -78,11 +78,11 @@ class Rover {
               }
             //Forward west movement
             case "W":
-              if (newPositions[0] != this.x){
+              if (newPositions[0] != this.getX()){
                 this.setX(newPositions[0])
                 break;
               }else{
-                newX = this.x - 1
+                newX = this.getX() - 1
                 newPositions = [newX, this.getY(), this.getOrientation()]
                 obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
                 if(obstacleDetection){
@@ -98,7 +98,7 @@ class Rover {
       }
       //Backward movement
       if (m === "b") {
-        newPositions = checkBorderBackward(this.x,this.y,this.orientation)
+        newPositions = checkBorderBackward(this.getX(),this.getY(),this.getOrientation())
         obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
         if (obstacleDetection){
           this.setCompletePosition(initialLocation[0], initialLocation[1], initialLocation[2])
@@ -106,11 +106,11 @@ class Rover {
           switch(this.orientation){
             //Backward north movement
             case "N":
-              if (newPositions[1] != this.y){
+              if (newPositions[1] != this.getY()){
                 this.setY(newPositions[1])
                 break;
               }else{
-                newY = this.y - 1
+                newY = this.getY() - 1
                 newPositions = [this.getX(), newY, this.getOrientation()]
                 obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
                 if(obstacleDetection){
@@ -123,11 +123,11 @@ class Rover {
               }
             //Backward south movement
               case "S":
-              if (newPositions[1] != this.y){
+              if (newPositions[1] != this.getY()){
                 this.setY(newPositions[1])
                 break;
               }else{
-                newY = this.y + 1
+                newY = this.getY() + 1
                 newPositions = [this.getX(), newY, this.getOrientation()]
                 obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
                 if(obstacleDetection){
@@ -140,11 +140,11 @@ class Rover {
               }
             //Backward east movement
             case "E":
-              if (newPositions[0] != this.x){
+              if (newPositions[0] != this.getX()){
                 this.setX(newPositions[0])
                 break;
               }else{
-                newX = this.x - 1
+                newX = this.getX() - 1
                 newPositions = [newX, this.getY(), this.getOrientation()]
                 obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
                 if(obstacleDetection){
@@ -157,14 +157,14 @@ class Rover {
               }
             //Backward west movement
             case "W":
-              if (newPositions[0] != this.x){
+              if (newPositions[0] != this.getX()){
                 this.setX(newPositions[0])
                 break;
               }else{
-                newX = this.x + 1
+                newX = this.getX() + 1
                 newPositions = [newX, this.getY(), this.getOrientation()]
                 obstacleDetection = checkObstacles(firstObstacle, secondObstacle, newPositions)
-                if(obstacleDetection == true){
+                if(obstacleDetection){
                   obstacleFinded = this.obstacleFinded(initialLocation, newPositions)   
                   break;          
                 }else{
