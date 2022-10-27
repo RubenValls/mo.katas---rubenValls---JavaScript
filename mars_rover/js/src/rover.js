@@ -13,7 +13,6 @@ class Rover {
     let obstacleFinded
     let newPositions
     let obstacleDetection
-    let newOrientation
     let newX
     let newY
 
